@@ -1,11 +1,20 @@
-from django.shortcuts import render, get_object_or_404, get_list_or_404
+
 from .models import Page
+# importamos listviews
+from django.views.generic.list import ListView
+# importamos dateilviews
+from django.views.generic.detail import DetailView
 
 # Create your views here.
-def pages(request):
-    pages = get_list_or_404(Page)
-    return render(request, 'pages/pages.html', {'pages':pages})
 
-def page(request, page_id, page_slug):
-    page = get_object_or_404(Page, id=page_id)
-    return render(request, 'pages/page.html', {'page':page})
+# UTILIZAR LIST VIEWS
+# https://docs.djangoproject.com/en/3.1/ref/class-based-views/generic-display/#django.views.generic.list.ListView
+# Devolver una lista generica y devolverla en un template
+
+class PagesListView(ListView):
+    model = Page
+
+# UTILIZAR DETAIL VIEW 
+# https://docs.djangoproject.com/en/3.1/ref/class-based-views/generic-display/#django.views.generic.detail.DetailView
+class PagesDetailView(DetailView):
+    model = Page

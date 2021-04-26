@@ -1,7 +1,7 @@
 from django.urls import path
-from . import views
-
+# en vez de cargar una vista basada en funciones , importamos la clase
+from .views import PagesListView , PagesDetailView
 urlpatterns = [
-    path('', views.pages, name='pages'),
-    path('<int:page_id>/<slug:page_slug>/', views.page, name='page'),
+    path('', PagesListView.as_view(), name='pages'),
+    path('<int:pk>/<slug:slug>/', PagesDetailView.as_view(), name='page'),
 ]
