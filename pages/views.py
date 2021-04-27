@@ -9,6 +9,8 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView
 # importamos UpdateView
 from django.views.generic.edit import UpdateView
+# importamos DeleteView
+from django.views.generic.edit import DeleteView
 
 
 # Create your views here.
@@ -47,3 +49,10 @@ class PagesUpdate(UpdateView):
 
     def get_success_url(self):
         return  reverse_lazy('pages:update',args=[self.object.id]) + '?ok'
+
+# UTILIZAR DELETE VIEWS , para borrar paginas
+#https://docs.djangoproject.com/en/3.1/ref/class-based-views/generic-editing/#django.views.generic.edit.DeleteView
+
+class PagesDelete(DeleteView):
+    model = Page
+    success_url = reverse_lazy('pages:pages')
